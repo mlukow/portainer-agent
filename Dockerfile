@@ -8,8 +8,10 @@ WORKDIR /src
 # Note: You may need to clone the specific version you want
 RUN apk add --no-cache git
 
-RUN git clone --depth 1 https://github.com/portainer/portainer.git .
-RUN git clone https://github.com/portainer/agent.git .
+RUN git clone --depth 1 https://github.com/portainer/portainer.git
+RUN git clone https://github.com/portainer/agent.git
+
+WORKDIR /src/agent
 
 # Build for ARMv6
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6 go build -a -installsuffix cgo -ldflags '-s' -o agent ./cmd/agent/main.go
