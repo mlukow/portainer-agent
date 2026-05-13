@@ -9,6 +9,9 @@ WORKDIR /src
 RUN apk add --no-cache git
 RUN git clone https://github.com/portainer/agent.git .
 
+# --- FIX: Remove local directory replacements ---
+RUN go mod edit -dropreplace github.com/portainer/portainer && go mod tidy
+
 # Build for ARMv6
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6 go build -a -installsuffix cgo -ldflags '-s' -o agent ./cmd/agent/main.go
 
