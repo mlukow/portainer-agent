@@ -8,8 +8,8 @@ WORKDIR /src
 # Note: You may need to clone the specific version you want
 RUN apk add --no-cache git
 
-RUN git clone --depth 1 https://github.com/portainer/portainer.git
-RUN git clone https://github.com/portainer/agent.git
+RUN git clone --depth 1 https://github.com/portainer/portainer.git server-ce
+RUN git clone https://github.com/portainer/agent.git agent
 
 WORKDIR /src/agent
 
