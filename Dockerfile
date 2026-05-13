@@ -19,7 +19,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6 go build -a -installsuffix cgo -
 # Stage 2: Final Image
 FROM arm32v6/alpine:latest
 WORKDIR /app
-COPY --from=builder /src/agent /app/agent
+COPY --from=builder /src/agent/agent /app/agent
 
 # Portainer Agent needs to communicate with Docker
 ENTRYPOINT ["./agent"]
